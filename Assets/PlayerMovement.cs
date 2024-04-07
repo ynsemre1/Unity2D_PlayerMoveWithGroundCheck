@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     public float jump;
-    public float move;
+    private float move;
+
     public Rigidbody2D rb;
     public bool isJumping;
 
@@ -19,11 +20,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        move = Input.GetAxis("Horitzonal");
+        move = Input.GetAxis("Horizontal");
 
         rb.velocity = new Vector2(speed * move, rb.velocity.y);
 
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") && isJumping == false)
         {
             rb.AddForce(new Vector2(rb.velocity.x, jump));
         }
