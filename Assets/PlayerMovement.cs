@@ -11,8 +11,6 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public bool isJumping;
 
-    public GameObject gun;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -29,18 +27,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isJumping == false)
         {
             rb.AddForce(new Vector2(rb.velocity.x, jump));
-        }
-
-        if (Input.GetKeyDown("A"))
-        {
-            gun.transform.position = new Vector3(.88f, 0f, 0f);
-            gun.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-        }
-
-        if (Input.GetKeyDown("D"))
-        {
-            gun.transform.position = new Vector3(-.88f, 0f, 0f);
-            gun.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
     }
 

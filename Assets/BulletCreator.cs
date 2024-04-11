@@ -5,8 +5,7 @@ using UnityEngine;
 public class BulletCreator : MonoBehaviour
 {
     public GameObject prefabToSpawn; // Spawn edilecek prefab
-
-    public Vector3 targetPosition;
+    private float move;
 
     void Start()
     {
@@ -31,5 +30,19 @@ public class BulletCreator : MonoBehaviour
             float angle = Mathf.Atan2(spawnDirection.y, spawnDirection.x) * Mathf.Rad2Deg;
             spawnedObject.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
+
+        move = Input.GetAxis("Horizontal");
+
+        if (move < 0)
+{
+    transform.localPosition = new Vector3(.88f, 0f, 0f);
+    transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+}
+
+if (move > 0)
+{
+    transform.localPosition = new Vector3(-.88f, 0f, 0f);
+    transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+}
     }
 }
