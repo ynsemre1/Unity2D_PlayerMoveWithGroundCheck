@@ -9,12 +9,15 @@ public class BulletPower : MonoBehaviour
     void Start()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        AddForceInDirection(rb, forceAmount, transform.right);
+        AddLocalForceInDirection(rb, forceAmount, -transform.up);
     }
 
-    void AddForceInDirection(Rigidbody2D rb, float force, Vector2 direction)
+    void AddLocalForceInDirection(Rigidbody2D rb, float force, Vector2 localDirection)
     {
-        // Belirlenen yön ve kuvvetle kuvvet uygula
-        rb.AddForce(-direction * force, ForceMode2D.Impulse);
+        // Nesnenin yerel yönünü dünya koordinat sistemi içindeki yönüne dönüştür
+        Vector2 worldDirection = rb.transform.TransformDirection(localDirection);
+
+        // Kuvvet uygula
+        rb.AddForce(worldDirection * force, ForceMode2D.Impulse);
     }
 }
